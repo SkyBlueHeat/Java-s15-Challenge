@@ -1,5 +1,3 @@
-
-
 import models.Book;
 import models.User;
 import models.Invoice;
@@ -107,11 +105,11 @@ public class Main {
                     String searchValue = scanner.nextLine();
                     if ("ID".equalsIgnoreCase(searchType)) {
                         Book book = library.searchBookById(searchValue);
-                        System.out.println(book != null ? book : "Kitap bulunamadı.");
+                        System.out.println(book != null ? book : String.valueOf("Kitap bulunamadı."));
                     } else if ("İsim".equalsIgnoreCase(searchType)) {
-                        library.searchBooksByTitle(searchValue).forEach(System.out::println);
+                        library.searchBooksByTitle(searchValue).forEach(book -> System.out.println(String.valueOf(book)));
                     } else if ("Yazar".equalsIgnoreCase(searchType)) {
-                        library.searchBooksByAuthor(searchValue).forEach(System.out::println);
+                        library.searchBooksByAuthor(searchValue).forEach(book -> System.out.println(String.valueOf(book)));
                     } else {
                         System.out.println("Geçersiz arama türü.");
                     }
@@ -179,11 +177,11 @@ public class Main {
                     String invoiceId = "FATURA-" + System.currentTimeMillis();
                     Invoice invoice = new Invoice(invoiceId, loggedInUser.getUserId(), invoiceBookId, amount);
                     library.addInvoice(invoice);
-                    System.out.println("Fatura başarıyla oluşturuldu: " + invoice);
+                    System.out.println("Fatura başarıyla oluşturuldu: " + String.valueOf(invoice));
                     break;
 
                 case 11:
-                    System.out.println("Şu an " + loggedInUser.getBorrowedBooks().size() + " kitap ödünç alındı.");
+                    System.out.println("Şu an " + String.valueOf(loggedInUser.getBorrowedBooks().size()) + " kitap ödünç alındı.");
                     break;
 
                 case 12:
